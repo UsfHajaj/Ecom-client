@@ -1,8 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+import { ProductParam } from './../shared/models/ProductParam';
+import {
+  Component,
+  ElementRef,
+  OnInit,
+  ViewChild,
+  viewChild,
+} from '@angular/core';
 import { ShopService } from './shop.service';
 import { Ipagnation } from '../shared/models/pagnation';
 import { IProduct } from '../shared/models/product';
 import { ICategory } from '../shared/models/category';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-shop',
@@ -10,31 +18,42 @@ import { ICategory } from '../shared/models/category';
   styleUrl: './shop.component.scss',
 })
 export class ShopComponent implements OnInit {
-  constructor(private _shopService: ShopService) {}
+  constructor(
+    private _shopService: ShopService,
+    private toast: ToastrService
+  ) {}
   product: IProduct[];
   category: ICategory[];
-  categoryId: number;
-  sortSelected: string;
-  search: string;
+  productParam: ProductParam = new ProductParam();
+  totalCount: number;
 
   sortingOption = [
     { name: 'Name', value: 'Name' },
     { name: 'Price:min-max', value: 'PriceAcn' },
     { name: 'Price:max-min', value: 'PriceDce' },
   ];
+
+  @ViewChild('sortSelected') selected: ElementRef;
   ngOnInit(): void {
+    this.productParam.sortSelected = this.sortingOption[0].value;
     this.getAllProduct();
     this.getCategory();
   }
 
   getAllProduct() {
-    this._shopService
-      .getProduct(this.categoryId, this.sortSelected, this.search)
-      .subscribe({
-        next: (value: Ipagnation) => {
-          this.product = value.data;
-        },
-      });
+    this._shopService.getProduct(this.productParam).subscribe({
+      next: (value: Ipagnation) => {
+        this.product = value.data;
+        this.totalCount = value.totalCount;
+        this.productParam.PageNumber = value.pageNumber;
+        this.productParam.PageSize = value.pageSize;
+        this.toast.success('Success show product', 'success');
+      },
+      error: (err) => {
+        console.log('Error', err);
+        this.toast.error('Error loading product', 'Error');
+      },
+    });
   }
   getCategory() {
     this._shopService.getCategory().subscribe({
@@ -45,12 +64,12 @@ export class ShopComponent implements OnInit {
   }
 
   selectedId(categoryid: number) {
-    this.categoryId = categoryid;
+    this.productParam.categoryId = categoryid;
     this.getAllProduct();
   }
   sortingByPrice(sort: Event) {
-    this.sortSelected = (sort.target as HTMLInputElement).value;
-    console.log(this.sortSelected);
+    this.productParam.sortSelected = (sort.target as HTMLInputElement).value;
+    console.log(this.productParam.sortSelected);
     this.getAllProduct();
   }
 
@@ -59,9 +78,15 @@ export class ShopComponent implements OnInit {
     this.getAllProduct();
   }
   resetValue() {
-    this.search = '';
-    this.sortSelected = '';
-    this.categoryId = 0;
+    this.productParam.search = '';
+    this.productParam.sortSelected = this.sortingOption[0].value;
+    this.selected.nativeElement.selectedIndex = 0;
+    this.productParam.categoryId = 0;
+    this.getAllProduct();
+  }
+
+  onChangePage(event: any) {
+    this.productParam.PageNumber = event;
     this.getAllProduct();
   }
 }

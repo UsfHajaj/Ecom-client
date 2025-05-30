@@ -6,6 +6,10 @@ import { IProduct } from '../../shared/models/product';
   templateUrl: './shop-item.component.html',
   styleUrl: './shop-item.component.scss'
 })
+
 export class ShopItemComponent {
   @Input() product: IProduct
+   mainImage: string;
+
+  
 }

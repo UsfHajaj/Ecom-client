@@ -19,33 +19,7 @@ $transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 
 // Base Styles
 // -----------
-body {
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  background-color: #fafbfc;
-  color: $text-primary;
-  line-height: 1.6;
-}
 
-.container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 1rem;
-}
-
-// Main Title
-// ----------
-.main-title {
-  font-size: 2.5rem;
-  font-weight: 700;
-  color: $text-primary;
-  margin-bottom: 2rem;
-  text-align: center;
-
-  @media (max-width: 768px) {
-    font-size: 2rem;
-    margin-bottom: 1.5rem;
-  }
-}
 
 // Sidebar Styles
 // --------------
@@ -286,28 +260,4 @@ body {
   &:nth-child(4) { animation-delay: 0.3s; }
 }
 
-// Loading States
-// --------------
-.loading {
-  opacity: 0.6;
-  pointer-events: none;
 
-  &::after {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 20px;
-    height: 20px;
-    border: 2px solid $primary-color;
-    border-top: 2px solid transparent;
-    border-radius: 50%;
-    animation: spin 1s linear infinite;
-    transform: translate(-50%, -50%);
-  }
-}
-
-@keyframes spin {
-  0% { transform: translate(-50%, -50%) rotate(0deg); }
-  100% { transform: translate(-50%, -50%) rotate(360deg); }
-}

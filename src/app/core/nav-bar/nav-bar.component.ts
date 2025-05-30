@@ -6,7 +6,8 @@ import { Component } from '@angular/core';
   styleUrl: './nav-bar.component.scss'
 })
 export class NavBarComponent {
- visibale :boolean = false
+  visibale: boolean = false
+  isNavbarCollapsed:boolean = true;
   toggleDropdown() {
     this.visibale=!this.visibale
   }
