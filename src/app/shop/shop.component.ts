@@ -49,10 +49,10 @@ export class ShopComponent implements OnInit {
         this.productParam.PageSize = value.pageSize;
         this.toast.success('Success show product', 'success');
       },
-      error: (err) => {
-        console.log('Error', err);
-        this.toast.error('Error loading product', 'Error');
-      },
+      // error: (err) => {
+      //   console.log('Error', err);
+      //   this.toast.error('Error loading product', 'Error');
+      // },
     });
   }
   getCategory() {

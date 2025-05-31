@@ -5,16 +5,20 @@
       <i class="text-white">E-Wasla</i>
     </a>
     <button
-        class="navbar-toggler"
-        type="button"
-        (click)="isNavbarCollapsed = !isNavbarCollapsed"
-        aria-controls="navbarSupportedContent"
-        aria-expanded="false"
-        aria-label="Toggle navigation"
-      >
-        <i class="material-icons">menu</i>
-      </button>
-    <div class="collapse navbar-collapse" [ngClass]="{ show: !isNavbarCollapsed }" id="navbarSupportedContent">
+      class="navbar-toggler"
+      type="button"
+      (click)="isNavbarCollapsed = !isNavbarCollapsed"
+      aria-controls="navbarSupportedContent"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <i class="material-icons">menu</i>
+    </button>
+    <div
+      class="collapse navbar-collapse"
+      [ngClass]="{ show: !isNavbarCollapsed }"
+      id="navbarSupportedContent"
+    >
       <ul class="navbar-nav mr-auto">
         <li class="nav-item">
           <a
@@ -26,11 +30,7 @@
           >
         </li>
         <li class="nav-item">
-          <a
-            routerLink="/shop"
-            routerLinkActive="active"
-            
-            class="nav-link"
+          <a routerLink="/shop" routerLinkActive="active" class="nav-link"
             >Shopping</a
           >
         </li>
@@ -47,9 +47,32 @@
           </div>
         </div>
       </form>
-      <ul class=" navbar-nav ml-auto align-items-center">
+      <ul class="navbar-nav ml-auto align-items-center">
         <li class="navbar-item">
-          <a href="" class="nav-link">
+          <a
+            routerLink="/basket"
+            class="nav-link"
+            matBadge="15"
+            matBadgeColor="warn"
+            style="position: relative; z-index: 1;"
+          >
+            <div
+              style="
+                color: white;
+                text-align: center;
+                color: white;
+                text-align: center;
+                background-color: #ef4444;
+                width: 20px;
+                height: 20px;
+                border-radius: 50%;
+                position: absolute;
+                z-index: 1;
+                top: 0px;
+                right: 2px;
+                font-size: 12px;
+              "
+            >{{(basketLen | async).basketItems.length}}</div>
             <i class="material-icons">shopping_cart</i>
           </a>
         </li>
@@ -84,7 +107,6 @@
           </div>
         </li>
       </ul>
-
     </div>
   </div>
 </nav>

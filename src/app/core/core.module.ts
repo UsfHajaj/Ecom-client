@@ -1,3 +1,4 @@
+
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
@@ -5,17 +6,15 @@ import { RouterLink, RouterModule } from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
-
 @NgModule({
-  declarations: [
-    NavBarComponent
-  ],
+  declarations: [NavBarComponent],
   imports: [
     CommonModule,
     RouterLink,
     RouterModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+
   ],
-  exports:[NavBarComponent]
+  exports: [NavBarComponent],
 })
-export class CoreModule { }
+export class CoreModule {}

@@ -44,7 +44,10 @@
         <div class="thumbnail-gallery">
           @for(item of product.photos; track $index) {
           <div class="thumbnail-item">
-            <img (click)="ReplaceImage(item.imageName)" src="https://localhost:44375/{{ item.imageName }}" />
+            <img
+              (click)="ReplaceImage(item.imageName)"
+              src="https://localhost:44375/{{ item.imageName }}"
+            />
           </div>
           }
         </div>
@@ -154,7 +157,7 @@
         </div>
 
         <!-- Quantity and Actions -->
-        <div class="product-actions ">
+        <div class="product-actions">
           <div class="action-buttons d-flex gap-2">
             <button class="btn btn-primary add-to-cart">
               <i class="fas fa-shopping-cart me-2"></i>
@@ -171,6 +174,180 @@
               <i class="far fa-heart me-2"></i>
               Add To Favorite
             </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Product Details Tabs -->
+  <div class="row mt-5">
+    <div class="col-12">
+      <div class="product-tabs">
+        <ul class="nav nav-tabs custom-tabs" id="productTabs" role="tablist">
+          <li class="nav-item" role="presentation">
+            <button
+              class="nav-link active"
+              id="description-tab"
+              data-bs-toggle="tab"
+              data-bs-target="#description"
+              type="button"
+              role="tab"
+            >
+              التفاصيل
+            </button>
+          </li>
+          <li class="nav-item" role="presentation">
+            <button
+              class="nav-link"
+              id="specifications-tab"
+              data-bs-toggle="tab"
+              data-bs-target="#specifications"
+              type="button"
+              role="tab"
+            >
+              المواصفات الكاملة
+            </button>
+          </li>
+          <li class="nav-item" role="presentation">
+            <button
+              class="nav-link"
+              id="reviews-tab"
+              data-bs-toggle="tab"
+              data-bs-target="#reviews"
+              type="button"
+              role="tab"
+            >
+              التقييمات (124)
+            </button>
+          </li>
+        </ul>
+
+        <div class="tab-content custom-tab-content" id="productTabsContent">
+          <div
+            class="tab-pane fade show active"
+            id="description"
+            role="tabpanel"
+          >
+            <div class="tab-content-wrapper">
+              <h5>تفاصيل المنتج</h5>
+              <p>
+                لابتوب Dell XPS 13 يمثل قمة الأناقة والأداء في عالم الحاسوب
+                المحمول. بتصميمه النحيف والخفيف، يوفر تجربة استخدام استثنائية
+                للمحترفين والطلاب على حد سواء.
+              </p>
+
+              <h6>الميزات الرئيسية:</h6>
+              <ul>
+                <li>تصميم أنيق ومتين من الألومنيوم والكربون فايبر</li>
+                <li>شاشة InfinityEdge بدقة 4K وألوان زاهية</li>
+                <li>معالج Intel Core i7 الجيل الحادي عشر عالي الأداء</li>
+                <li>بطارية تدوم حتى 12 ساعة من الاستخدام المكثف</li>
+                <li>منافذ USB-C وThunderbolt 4 للاتصال السريع</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="tab-pane fade" id="specifications" role="tabpanel">
+            <div class="tab-content-wrapper">
+              <div class="specs-table">
+                <div class="spec-row">
+                  <div class="spec-category">المعالج</div>
+                  <div class="spec-details">
+                    Intel Core i7-1165G7 (4 أنوية، 8 خيوط، حتى 4.7 جيجاهرتز)
+                  </div>
+                </div>
+                <div class="spec-row">
+                  <div class="spec-category">الذاكرة</div>
+                  <div class="spec-details">
+                    16GB LPDDR4-4267MHz (غير قابلة للترقية)
+                  </div>
+                </div>
+                <div class="spec-row">
+                  <div class="spec-category">التخزين</div>
+                  <div class="spec-details">512GB M.2 PCIe NVMe SSD</div>
+                </div>
+                <div class="spec-row">
+                  <div class="spec-category">الشاشة</div>
+                  <div class="spec-details">
+                    13.3" UHD+ (3840x2400) InfinityEdge Anti-Glare
+                  </div>
+                </div>
+                <div class="spec-row">
+                  <div class="spec-category">كارت الرسوميات</div>
+                  <div class="spec-details">Intel Iris Xe Graphics</div>
+                </div>
+                <div class="spec-row">
+                  <div class="spec-category">المنافذ</div>
+                  <div class="spec-details">
+                    2x Thunderbolt 4, 1x USB-C 3.2, 1x MicroSD, 1x سماعة
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="tab-pane fade" id="reviews" role="tabpanel">
+            <div class="tab-content-wrapper">
+              <div class="reviews-summary mb-4">
+                <div class="rating-overview">
+                  <div class="overall-rating">
+                    <span class="rating-number">4.2</span>
+                    <div class="stars">
+                      <i class="fas fa-star"></i>
+                      <i class="fas fa-star"></i>
+                      <i class="fas fa-star"></i>
+                      <i class="fas fa-star"></i>
+                      <i class="far fa-star"></i>
+                    </div>
+                    <p>من أصل 124 تقييم</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="reviews-list">
+                <div class="review-item">
+                  <div class="reviewer-info">
+                    <div class="reviewer-avatar">أ</div>
+                    <div class="reviewer-details">
+                      <h6>أحمد محمد</h6>
+                      <div class="review-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                      </div>
+                    </div>
+                  </div>
+                  <p class="review-text">
+                    لابتوب ممتاز بمواصفات عالية وتصميم أنيق. الأداء سريع جداً
+                    والبطارية تدوم طويلاً. أنصح به بشدة!
+                  </p>
+                  <div class="review-date">منذ 3 أيام</div>
+                </div>
+
+                <div class="review-item">
+                  <div class="reviewer-info">
+                    <div class="reviewer-avatar">س</div>
+                    <div class="reviewer-details">
+                      <h6>سارة أحمد</h6>
+                      <div class="review-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="far fa-star"></i>
+                      </div>
+                    </div>
+                  </div>
+                  <p class="review-text">
+                    جودة عالية وشاشة رائعة، لكن السعر مرتفع قليلاً. بشكل عام
+                    راضية عن الشراء.
+                  </p>
+                  <div class="review-date">منذ أسبوع</div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
