@@ -83,7 +83,7 @@
         <div class="price-section mb-4">
           <div class="current-price">{{ product.newPrice | currency }}</div>
           <div class="old-price">{{ product.oldPrice | currency }}</div>
-          <div class="discount-badge">30%</div>
+          <div class="discount-badge">{{calculateDiscound(product.oldPrice,product.newPrice) }}%</div>
         </div>
 
         <!-- Product Description -->
@@ -158,14 +158,24 @@
 
         <!-- Quantity and Actions -->
         <div class="product-actions">
+          <div class="action-buttons d-flex gap-2 mb-2">
+            <button (click)="incrementBasket()" class="btn btn-danger add-to-cart">
+              <i class="fa fa-plus"></i>
+            </button>
+            <div class="text-center d-flex align-items-center justify-content-center">{{quantity}}</div>
+            <button (click)="decrementBasket()" class="btn btn-outline-danger buy-now">
+               <i class="fa fa-minus"></i>
+
+            </button>
+          </div>
           <div class="action-buttons d-flex gap-2">
-            <button class="btn btn-primary add-to-cart">
+            <button (click)="AddToBasket()" class="btn btn-primary add-to-cart">
               <i class="fas fa-shopping-cart me-2"></i>
               Add To Cart
             </button>
-            <button class="btn btn-outline-primary buy-now">
+            <button routerLink="/shop" class="btn btn-outline-primary buy-now">
               <i class="fas fa-bolt me-2"></i>
-              Buy Now
+              Shopping
             </button>
           </div>
 
