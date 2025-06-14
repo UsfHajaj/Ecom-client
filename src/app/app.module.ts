@@ -29,6 +29,8 @@ import { ToastrModule } from 'ngx-toastr';
 import { IdentityModule } from './identity/identity.module';
 import { credentialsInterceptor } from './core/Interceptor/credentials.interceptor';
 
+
+
 @NgModule({
   declarations: [AppComponent],
   imports: [
@@ -38,7 +40,7 @@ import { credentialsInterceptor } from './core/Interceptor/credentials.intercept
     HomeModule,
     NgxSpinnerModule,
     BrowserAnimationsModule,
-    
+
 
 
 

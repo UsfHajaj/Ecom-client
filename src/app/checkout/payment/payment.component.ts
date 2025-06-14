@@ -30,7 +30,7 @@ export class PaymentComponent implements OnInit {
     const order = this.getOrderCreate(basket);
     this._service.createOreder(order).subscribe({
       next: (value) => {
-        console.log(value);
+        this.basketService.deleteBasket();
         this.rout.navigate(['/checkout/success'],{queryParams:{orderId:value.id}})
         this.tost.success("Order has been Created","SUCCESS")
       },

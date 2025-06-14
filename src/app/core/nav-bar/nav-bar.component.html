@@ -72,6 +72,7 @@
                 right: 2px;
                 font-size: 12px;
               "
+              *ngIf="(basketLen | async)?.basketItems?.length"
             >{{(basketLen | async).basketItems.length}}</div>
             <i class="material-icons">shopping_cart</i>
           </a>
@@ -93,15 +94,15 @@
             class="dropdown-menu dropdown-menu-right"
             aria-labelledby="NavBarDropdown"
           >
-            <a class="dropdown-item" routerLink="/account/Register"
+            <a class="dropdown-item" routerLink="/account/register"
               >Register <i class="fa fa-user-plus"></i></a
-            ><a class="dropdown-item" routerLink="/account/Login"
+            ><a routerLink="/account/login" class="dropdown-item"
               >Login <i class="fa fa-sign-in"></i></a
             ><a
               class="dropdown-item"
               matBadge="1"
               matBadgeSize="large"
-              routerLink="/order"
+              routerLink="/orders"
               >My Order <i class="fa fa-list"></i
             ></a>
           </div>

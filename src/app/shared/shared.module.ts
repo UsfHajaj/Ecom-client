@@ -7,7 +7,7 @@ import { CommonModule } from '@angular/common';
 import { PagnationComponent } from './Component/pagnation/pagnation.component';
 import { RouterModule } from '@angular/router';
 import { OrderTotalComponent } from './Component/order-total/order-total.component';
-
+import { CarouselModule } from 'ngx-bootstrap/carousel';
 
 
 @NgModule({
@@ -18,6 +18,7 @@ import { OrderTotalComponent } from './Component/order-total/order-total.compone
   imports: [
     CommonModule,
     PaginationModule.forRoot(),
+    CarouselModule.forRoot(),
     RouterModule
   ],
   exports: [

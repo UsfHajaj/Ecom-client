@@ -4,24 +4,53 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, map } from 'rxjs';
 import { IProduct } from '../shared/models/product';
 import { Delivery } from '../shared/models/Delivery';
+import { environment } from '../../environments/environment.development';
 
 @Injectable({
   providedIn: 'root',
 })
 export class BasketService {
-  constructor(private _http: HttpClient) {}
-  baseUrl = 'https://localhost:44375/api/';
+  constructor(private _http: HttpClient) { }
+  baseUrl = environment.baseUrl;
   private basketSource = new BehaviorSubject<IBasket>(null);
   basket$ = this.basketSource.asObservable();
   private basketSourceTotal = new BehaviorSubject<IBasketTotal>(null);
   basketTotal$ = this.basketSourceTotal.asObservable();
   shippingPrice: number = 0;
+
+  createPaymentIntent(deleveryMethodId:number=3) {
+    return this._http.post<IBasket>(this.baseUrl +
+      `Payment/create?busketId=${this.getCurrentValue().id}&deleveryMethodId=${deleveryMethodId}`, {})
+      .pipe(map((value: IBasket) => {
+        this.basketSource.next(value);
+
+        console.log(value)
+
+      }));
+  }
+  getPaymentDetails() {
+    const basket = this.getCurrentValue();
+    return {
+      paymentIntentID: basket?.paymentIntentID || null,
+      clientSecret: basket?.clientSecret || null
+    };
+  }
+  hasPaymentIntent(): boolean {
+    const basket = this.getCurrentValue();
+    return !!(basket?.paymentIntentID && basket?.clientSecret);
+  }
+  deleteBasket() {
+    this.basketSource.next(null)
+    this.basketSourceTotal.next(null)
+    localStorage.removeItem('basketId')
+  }
   setShippingPrice(delivery:Delivery) {
     this.shippingPrice = delivery.price
     this.calculateTotal()
   }
   calculateTotal() {
     const basket = this.getCurrentValue();
+    if (!basket || !basket.basketItems) return;
     const shipping = this.shippingPrice;
     const subtotal = basket.basketItems.reduce((a, c) => {
       return (c.price*c.quanatity)+a
@@ -40,8 +69,13 @@ export class BasketService {
   }
 
   postBasket(basket: IBasket) {
+    const basketToSend = {
+      ...basket,
+      paymentIntentID: basket.paymentIntentID || "",
+      clientSecret: basket.clientSecret || ""
+    };
     return this._http
-      .post(this.baseUrl + 'Basket/update-basket', basket)
+      .post(this.baseUrl + 'Basket/update-basket', basketToSend)
       .subscribe({
         next: (value: IBasket) => {
           this.basketSource.next(value);
@@ -63,7 +97,7 @@ export class BasketService {
       quantity
     );
     let basket = this.getCurrentValue()
-    if (basket.id == null) {
+    if (!basket || basket.id == null) {
 
       basket= this.CreateBasket();
     }
@@ -90,6 +124,8 @@ export class BasketService {
   }
   private CreateBasket(): IBasket {
     const basket = new Basket();
+    // basket.paymentIntentID = ''
+    // basket.clientSecret=''
     localStorage.setItem('basketId', basket.id);
     return basket;
   }
@@ -139,8 +175,9 @@ export class BasketService {
 
   }
   deleteBasketItem(basket: IBasket) {
-    return this._http.delete(this.baseUrl + '/api/Basket/delete-basket/' + basket.id).subscribe({
+    return this._http.delete(this.baseUrl + 'Basket/delete-basket/' + basket.id).subscribe({
       next: (value) => {
+        console.log("basket id :",basket.id)
         this.basketSource.next(null);
         localStorage.removeItem("basketId");
       },

@@ -22,6 +22,10 @@ const routes: Routes = [
     path: 'account',
     loadChildren: () => import('./identity/identity.module').then((m) => m.IdentityModule),
   },
+  {
+    path: 'orders',
+    loadChildren: () => import('./orders/orders.module').then((m) => m.OrdersModule),
+  },
   { path: '**', redirectTo: '', pathMatch: 'full' },
 ];
 

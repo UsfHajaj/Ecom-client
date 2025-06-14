@@ -1,6 +1,17 @@
-@if(basket.id==null){
-<p class="text-danger text-center">Your Basket is empty</p>
-} @else {
+@if(basket == null || basket.basketItems == null || basket.basketItems.length == 0){
+  <div class=" d-flex justify-content-center align-items-center  ">
+        <div class="text-center animate__animated animate__fadeInUp slow-fade shadow-lg p-5 rounded-4 classy-box">
+            <i class="bi bi-bag-x-fill display-4 text-danger mb-3"></i>
+            <h2 class="fw-bold mb-2">Your Basket is Empty</h2>
+            <p class="text-muted mb-4">Looks like you haven’t picked your destiny yet.</p>
+            <a routerLink="/shop" class="btn btn-outline-danger btn-lg px-4 py-2 classy-button">
+                Explore Products
+            </a>
+        </div>
+    </div>
+
+}
+ @else {
 <div class="container pt-4 felx-container">
   <div class="basket-container">
     <table class="table table-hover custom-table">
