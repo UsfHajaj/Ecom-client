@@ -45,10 +45,12 @@ export class LoginComponent implements OnInit {
   Submit() {
     if (this.formGroup.valid) {
       this._service.Login(this.formGroup.value).subscribe({
-        next: (value) => {
-          console.log(value);
+        next: (res) => {
+          console.log(res);
           this.tost.success('success', 'success');
           this.rout.navigateByUrl('/')
+          localStorage.setItem('tokenLogIn', res['token']);
+
         },
         error: (err) => {
           console.log(err);
@@ -61,6 +63,7 @@ export class LoginComponent implements OnInit {
     this._service.ForGetPassword(this.emailModel).subscribe({
       next: (value) => {
         console.log(value);
+
       },
       error(err) {
         console.log(err);

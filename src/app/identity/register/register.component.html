@@ -9,7 +9,7 @@
           [class.is-valid]="_userName.valid"
           [class.is-invalid]="_userName.invalid && _userName.touched"
           >
-          @if(_userName.invalid){
+          @if(_userName.invalid&& _userName.touched){
             <span class="text-danger"> userName Is Required </span>
           }
         </div>
@@ -20,7 +20,7 @@
           [class.is-valid]="_displayName.valid"
           [class.is-invalid]="_displayName.invalid && _displayName.touched"
           >
-          @if(_displayName.invalid){
+          @if(_displayName.invalid&& _displayName.touched){
             <span class="text-danger"> DisplayName Is Required </span>
           }
         </div>
@@ -31,7 +31,7 @@
           [class.is-valid]="_email.valid"
           [class.is-invalid]="_email.invalid && _email.touched"
           >
-          @if(_email.hasError('required')){
+          @if(_email.hasError('required')&& _email.touched){
             <span class="text-danger"> Email Is Required </span>
           }
           @else if (_email.hasError('email')) {
@@ -45,7 +45,7 @@
           [class.is-valid]="_password.valid"
           [class.is-invalid]="_password.invalid && _password.touched"
           >
-          @if(_password.hasError('required')){
+          @if(_password.hasError('required')&& _password.touched){
             <span class="text-danger"> Password Is Required </span>
           }
           @else if (_password.hasError('pattern')) {

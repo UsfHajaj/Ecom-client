@@ -28,6 +28,10 @@ import { LoaderInterceptor } from './core/Interceptor/loader.interceptor';
 import { ToastrModule } from 'ngx-toastr';
 import { IdentityModule } from './identity/identity.module';
 import { credentialsInterceptor } from './core/Interceptor/credentials.interceptor';
+import { AboutModule } from './about/about.module';
+import { RouterModule } from '@angular/router';
+import { SearchModule } from './search/search.module';
+
 
 
 
@@ -40,6 +44,10 @@ import { credentialsInterceptor } from './core/Interceptor/credentials.intercept
     HomeModule,
     NgxSpinnerModule,
     BrowserAnimationsModule,
+    AboutModule,
+    SharedModule,
+    RouterModule,
+    SearchModule,
 
 
 

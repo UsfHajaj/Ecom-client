@@ -11,7 +11,7 @@
           [class.is-valid]="_email.valid"
           [class.is-invalid]="_email.invalid && _email.touched"
         />
-        @if(_email.hasError('required')){
+        @if(_email.hasError('required')&& _email.touched){
         <span class="text-danger"> Email Is Required </span>
         } @else if (_email.hasError('email')) {
         <span class="text-danger"> Invaled Email Address </span>
@@ -26,7 +26,7 @@
           [class.is-valid]="_password.valid"
           [class.is-invalid]="_password.invalid && _password.touched"
         />
-        @if(_password.hasError('required')){
+        @if(_password.hasError('required')&& _password.touched) {
         <span class="text-danger"> Password Is Required </span>
         } @else if (_password.hasError('pattern')) {
         <span class="text-danger">

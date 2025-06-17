@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { ShopComponent } from './shop/shop.component';
 import { ProductDetailsComponent } from './shop/product-details/product-details.component';
+import { SearchComponent } from './search/search/search.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -19,6 +20,10 @@ const routes: Routes = [
     loadChildren: () => import('./checkout/checkout.module').then((m) => m.CheckoutModule),
   },
   {
+    path: 'about',
+    loadChildren: () => import('./about/about.module').then((m) => m.AboutModule),
+  },
+  {
     path: 'account',
     loadChildren: () => import('./identity/identity.module').then((m) => m.IdentityModule),
   },
@@ -26,6 +31,7 @@ const routes: Routes = [
     path: 'orders',
     loadChildren: () => import('./orders/orders.module').then((m) => m.OrdersModule),
   },
+  { path: 'search', component: SearchComponent },
   { path: '**', redirectTo: '', pathMatch: 'full' },
 ];
 
